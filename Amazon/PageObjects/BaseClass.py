@@ -78,3 +78,11 @@ class SubCartPage(BasePage):
 
     def View_Sub_Cart(self):
         self.click(Locators.Sub_cart_page)
+
+
+class CheckOutPage(BasePage):
+    def __init__(self, driver):
+        super().__init__(driver)
+
+    def click_Add_To_Cart(self):
+        self.click(Locators.Add_to_cart)

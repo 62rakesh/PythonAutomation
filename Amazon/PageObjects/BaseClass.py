@@ -86,3 +86,4 @@ class CheckOutPage(BasePage):
 
     def click_Add_To_Cart(self):
         self.click(Locators.Add_to_cart)
+

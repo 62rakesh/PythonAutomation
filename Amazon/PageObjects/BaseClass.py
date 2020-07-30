@@ -84,6 +84,30 @@ class CheckOutPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
 
-    def click_Add_To_Cart(self):
-        self.click(Locators.Add_to_cart)
+    def click_Check_Out(self):
+        self.click(Locators.Checkout_page)
 
+
+class Login_UsernamePage(BasePage):
+    def __init__(self, driver):
+        super().__init__(driver)
+
+    def Submit_User_Details(self):
+        self.enter_text(Locators.Enter_username, TestData.Username)
+
+
+class Login_SubmitPage(BasePage):
+    def __init__(self, driver):
+        super().__init__(driver)
+
+    def Click_Submit_button(self):
+        self.click(Locators.Submit_username)
+
+
+class Login_PasswordPage(BasePage):
+    def __init__(self, driver):
+        super().__init__(driver)
+
+    def Enter_Password(self):
+        self.enter_text(Locators.Enter_password, TestData.Password)
+        # self.click(Locators.Submit_user)

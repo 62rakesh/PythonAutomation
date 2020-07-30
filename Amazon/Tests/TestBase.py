@@ -10,6 +10,9 @@ from PageObjects.BaseClass import BasePage, HomePage, SearchResultPage
 from PageObjects.BaseClass import AddToCartPage
 from PageObjects.BaseClass import SubCartPage
 from PageObjects.BaseClass import CheckOutPage
+from PageObjects.BaseClass import Login_UsernamePage
+from PageObjects.BaseClass import Login_SubmitPage
+from PageObjects.BaseClass import Login_PasswordPage
 from Resources.Locators import Locators
 from Resources.TestData import TestData
 
@@ -36,8 +39,7 @@ class Amazon_Search(unittest.TestCase):
         self.driver.maximize_window()
 
     def tearDown(self):
-        self.driver.close()
-        # self.driver.quit()
+        print('Execution completed')
 
 
 class Test_Amazon_search(Amazon_Search):
@@ -104,9 +106,34 @@ class Test_Amazon_search(Amazon_Search):
         self.sub_cart.View_Sub_Cart()
         print(self.driver.title)
         self.checkout = CheckOutPage(self.Addproduct.driver)
-        self.checkout.click_Add_To_Cart()
+        self.checkout.click_Check_Out()
         print(self.driver.title)
+
+    def test_user_should_able_to_login(self):
+        self.homepage = HomePage(self.driver)
+        self.homepage.search()
+        # self.homepage.driver.sleep(5)
+        self.searchproduct = SearchResultPage(self.homepage.driver)
+        self.searchproduct.click_search_result()
+        # self.assertIn(TestData.search_item, self.searchproduct.driver.title())
+        # print(self.driver.title)
+        self.searchproduct.driver.switch_to.window(self.searchproduct.driver.window_handles[1])
+        # print(self.driver.title)
+        self.Addproduct = AddToCartPage(self.searchproduct.driver)
+        self.Addproduct.Add_To_Cart()
+        print(self.driver.title)
+        self.sub_cart = SubCartPage(self.Addproduct.driver)
+        self.sub_cart.View_Sub_Cart()
+        print(self.driver.title)
+        self.checkout = CheckOutPage(self.Addproduct.driver)
+        self.checkout.click_Check_Out()
+        print(self.driver.title)
+        self.username = Login_UsernamePage(self.checkout.driver)
+        self.username.Submit_User_Details()
+        self.submit = Login_SubmitPage(self.username.driver)
+        self.password = Login_PasswordPage(self.submit.driver)
+        self.password.Enter_Password()
 
 
 if __name__ == '__main__':
-    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output="D://Python_Workspace//Amazon//Reports"))
+    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output="D://Python_Workspace//Localrepo//Amazon//Reports"))

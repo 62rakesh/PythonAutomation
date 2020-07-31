@@ -126,13 +126,14 @@ class Test_Amazon_search(Amazon_Search):
         self.sub_cart.View_Sub_Cart()
         print(self.driver.title)
         self.checkout = CheckOutPage(self.Addproduct.driver)
-        self.checkout.click_Check_Out()
-        print(self.driver.title)
-        self.username = Login_UsernamePage(self.checkout.driver)
-        self.username.Submit_User_Details()
-        self.submit = Login_SubmitPage(self.username.driver)
-        self.password = Login_PasswordPage(self.submit.driver)
-        self.password.Enter_Password()
+        # self.checkout.click_Check_Out()
+        # print(self.driver.title)
+        # self.username = Login_UsernamePage(self.checkout.driver)
+        # self.username.Submit_User_Details()
+        # self.submit = Login_SubmitPage(self.username.driver)
+        # self.password = Login_PasswordPage(self.submit.driver)
+        # self.password.Enter_Password()
+
 
 
 if __name__ == '__main__':
